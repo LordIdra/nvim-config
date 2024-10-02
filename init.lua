@@ -17,6 +17,11 @@ vim.opt.hlsearch = true
 vim.opt.showmode = false
 vim.opt.relativenumber = true
 
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+
 vim.g.rustaceanvim = {
   server = {
     default_settings = {
