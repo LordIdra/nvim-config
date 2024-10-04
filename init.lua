@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.keymap.set('n', '<leader>e', '<cmd>NERDTreeToggle<CR>', { desc = 'Toggle [E]xplorer' })
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle [E]xplorer' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -94,9 +94,9 @@ require('mason-lspconfig').setup({
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').yamlls.setup({})
 
-require('auto-save').setup({
-  write_all_buffers = true
-})
+-- require('auto-save').setup({
+--   write_all_buffers = true
+-- })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -123,6 +123,8 @@ require('lualine').setup {
 require('trouble').setup({})
 
 require('nvim-web-devicons').setup({})
+
+require('nvim-tree').setup({})
 
 vim.cmd [[ 
   sign define DiagnosticSignError text=  linehl= texthl=DiagnosticSignError numhl= 
