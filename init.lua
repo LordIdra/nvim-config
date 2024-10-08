@@ -51,11 +51,21 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-vim.keymap.set('n', '<leader>td', '<cmd>Trouble diagnostics toggle<CR>', { desc = '[T]oggle [D]iagnostics' })
+vim.keymap.set('n', '<leader>dt', '<cmd>Trouble diagnostics toggle<CR>', { desc = '[D]iagnostics [T]oggle' })
+
+vim.keymap.set('n', '<leader>dn', function()
+  vim.diagnostic.goto_next()
+end, { desc = '[D]iagnostics [N]ext' })
+
+vim.keymap.set('n', '<leader>dp', function()
+  vim.diagnostic.goto_prev()
+end, { desc = '[D]iagnostics [P]revious' })
+
 vim.keymap.set('n', '<leader>rt', function ()
   require("neotest").run.run(vim.fn.getcwd())
   require("neotest").summary.open()
 end, { desc = '[R]un [T]ests' })
+
 vim.keymap.set('n', '<Esc>', function ()
   vim.cmd.nohlsearch()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
