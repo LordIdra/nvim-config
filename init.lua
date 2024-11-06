@@ -103,6 +103,9 @@ require('mason-lspconfig').setup({
 
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').yamlls.setup({})
+require('lspconfig').clangd.setup({
+  cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'}
+})
 
 -- require('auto-save').setup({
 --   write_all_buffers = true
