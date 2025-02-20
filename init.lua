@@ -107,10 +107,6 @@ require('lspconfig').clangd.setup({
   cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'}
 })
 
--- require('auto-save').setup({
---   write_all_buffers = true
--- })
-
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     update_in_insert = true,
@@ -133,7 +129,9 @@ require('lualine').setup {
   }
 }
 
-require('trouble').setup({})
+require('trouble').setup({
+  multiline = true
+})
 
 require('nvim-web-devicons').setup({})
 
