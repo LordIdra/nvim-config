@@ -53,6 +53,9 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<leader>dt', '<cmd>Trouble diagnostics toggle<CR>', { desc = '[D]iagnostics [T]oggle' })
 
+vim.keymap.set('n', '<C-n>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-p>', '<Nop>', { noremap = true, silent = true })
+
 vim.keymap.set('n', '<leader>dn', function()
   vim.diagnostic.goto_next()
 end, { desc = '[D]iagnostics [N]ext' })
@@ -68,11 +71,14 @@ end, { desc = '[R]un [T]ests' })
 
 vim.keymap.set('n', '<Esc>', function ()
   vim.cmd.nohlsearch()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_config(win).relative == "win" then
-      vim.api.nvim_win_close(win, false)
+  -- use pcall as try-catch, sometimes this throws a harmless error
+  pcall(function ()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_config(win).relative == "win" then
+        vim.api.nvim_win_close(win, false)
+      end
     end
-  end
+  end)
 end)
 
 require('config.lazy')
@@ -154,3 +160,6 @@ require("neotest").setup({
     }
   }
 })
+
+require('nvim-tmux-navigation').setup({})
+
