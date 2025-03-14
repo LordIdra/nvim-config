@@ -110,7 +110,7 @@ require('mason-lspconfig').setup({
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').yamlls.setup({})
 require('lspconfig').clangd.setup({
-  cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'}
+  cmd = {'clangd', '--query-driver=/usr/bin/arm-none-eabi-gcc', '--background-index', '--clang-tidy', '--log=verbose'}
 })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
