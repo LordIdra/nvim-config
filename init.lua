@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle [E]xplorer' })
+vim.keymap.set('n', '<leader>w', '<cmd>Ouroboros<CR>', { desc = 'S[w]itch source/header' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -110,7 +111,7 @@ require('mason-lspconfig').setup({
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').yamlls.setup({})
 require('lspconfig').clangd.setup({
-  cmd = {'clangd', '--query-driver=/usr/bin/arm-none-eabi-gcc', '--background-index', '--clang-tidy', '--log=verbose'}
+  cmd = {'clangd', '--query-driver=/usr/bin/arm-none-eabi-gcc', '--background-index', '--clang-tidy', '--log=verbose', '--completion-style=detailed'}
 })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
@@ -119,11 +120,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
-require('dracula').setup({})
-
 require('lualine').setup {
   options = {
-    theme = "dracula-nvim",
+    theme = "catppuccin-mocha",
   },
   sections = {
     lualine_a = {'mode'},
@@ -136,7 +135,7 @@ require('lualine').setup {
 }
 
 require('trouble').setup({
-  multiline = true
+  multiline = false
 })
 
 require('nvim-web-devicons').setup({})
@@ -163,3 +162,4 @@ require("neotest").setup({
 
 require('nvim-tmux-navigation').setup({})
 
+vim.cmd.colorscheme "catppuccin-mocha"
